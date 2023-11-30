@@ -20,7 +20,22 @@
   cursor: pointer;
   margin: 5px;
   box-sizing: border-box;
+      position: relative; /* To position labels */
 }
+
+      .square-label {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      color: black;
+      font-weight: bold;
+    }
+
+      .aisle-label {
+      text-align: center;
+      font-weight: bold;
+      margin: 0 20px; /* Adjust as needed */
+    }
 
 .row {
   display: flex;
@@ -122,94 +137,9 @@ margin-right: 40px;
 </head>
 <body>
 
-    <div id="squares-container">
-        <!-- First row of squares -->
-        <div class="row">
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-        </div>
-        <!-- Second row of squares -->
-        <div class="row">
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-        </div>
-        <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-      </div>
+  <div id="squares-container">
+    <!-- Dynamically generate rows and squares with JavaScript -->
+  </div>
 
   <div id="counter-banner">
     <div>
@@ -227,6 +157,36 @@ margin-right: 40px;
     </div>
   </div>
 <script>
+      const squaresContainer = document.getElementById('squares-container');
+    const squareLabels = ['A', 'B', 'C', 'D'];
+    let aisleNumber = 1;
+
+    for (let row = 0; row < 9; row++) {
+      const rowDiv = document.createElement('div');
+      rowDiv.className = 'row';
+
+      // Add squares with labels
+      for (let i = 0; i < 4; i++) {
+        const squareDiv = document.createElement('div');
+        squareDiv.className = 'square';
+        const label = document.createElement('span');
+        label.className = 'square-label';
+        label.innerText = squareLabels[i];
+        squareDiv.appendChild(label);
+        rowDiv.appendChild(squareDiv);
+
+        // Add aisle label after the second square
+        if (i === 1) {
+          const aisleLabel = document.createElement('div');
+          aisleLabel.className = 'aisle-label';
+          aisleLabel.innerText = aisleNumber;
+          rowDiv.appendChild(aisleLabel);
+          aisleNumber++;
+        }
+      }
+      squaresContainer.appendChild(rowDiv);
+    }
+  
   let states = [];
   const counters = {
     adult: 0,
