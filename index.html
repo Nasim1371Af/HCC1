@@ -33,17 +33,33 @@
 }
 
     #counter-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white with slight transparency */
-    text-align: center;
-    padding: 10px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Subtle drop shadow for depth */
-    z-index: 1000;
-  }
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 10px 20px; /* Adjusted padding */
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
 
+      #counter-banner .counter {
+      display: inline-block;
+      margin: 0; /* Adjusted margin */
+    }
+
+      #reset-button {
+      padding: 5px 10px;
+      background-color: red;
+      color: white;
+      border: 3px solid black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  
     .counter {
     display: block;
     margin: 5px 0;
@@ -183,12 +199,14 @@
           </div>
       </div>
 
-<div id="counter-banner">
-  <div class="counter">Adult: <span id="adult">0</span></div>
-  <div class="counter">Child: <span id="child">0</span></div>
-  <div class="counter">Cargo: <span id="cargo">0</span></div>
-  <button id="reset-button">Reset</button> <!-- Reset Button -->
-</div>
+  <div id="counter-banner">
+    <div>
+      <span class="counter">Adult: <span id="adult">0</span></span>
+      <span class="counter">Child: <span id="child">0</span></span>
+      <span class="counter">Cargo: <span id="cargo">0</span></span>
+    </div>
+    <button id="reset-button">Reset</button>
+  </div>
 <script>
   let states = [];
   const counters = {
