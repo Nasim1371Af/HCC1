@@ -31,19 +31,24 @@
       font-weight: bold;
     }
 
-      .aisle-label {
-      text-align: center;
-      font-weight: bold;
-    }
+.aisle-label {
+  width: 50px; /* Adjust as needed for alignment */
+  text-align: center;
+  font-weight: bold;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
 
 .row {
   display: flex;
   justify-content: center;
-  width: 100%; /* Ensure rows take full width */
+  align-items: center;
+  width: 100%;
 }
 
-.square:nth-child(2) {
-  margin-right: 50px; /* Gap for the 'aisle' */
+
+.square:nth-child(3) {
+  margin-left: 50px; /* Adjust gap for the aisle */
 }
 
     #counter-banner {
@@ -103,9 +108,9 @@ margin-right: 40px;
     width: min(10vw, 50px); /* Larger relative size for smaller screens */
     height: min(10vw, 50px); /* Maintain square aspect ratio */
   }
-  .square:nth-child(2) {
-    margin-right: 5vw; /* Smaller gap for the 'aisle' on smaller screens */
-  }
+  /*.square:nth-child(2) {
+    margin-right: 5vw; /* Smaller gap for the 'aisle' on smaller screens
+  }*/
 
 .counter {
   /* Removed position:absolute and bottom properties */
@@ -156,35 +161,35 @@ margin-right: 40px;
     </div>
   </div>
 <script>
-      const squaresContainer = document.getElementById('squares-container');
-    const squareLabels = ['A', 'B', 'C', 'D'];
-    let aisleNumber = 1;
+  const squaresContainer = document.getElementById('squares-container');
+  const squareLabels = ['A', 'B', 'C', 'D'];
+  let aisleNumber = 1;
 
-    for (let row = 0; row < 9; row++) {
-      const rowDiv = document.createElement('div');
-      rowDiv.className = 'row';
+  for (let row = 0; row < 9; row++) {
+    const rowDiv = document.createElement('div');
+    rowDiv.className = 'row';
 
-      // Add squares with labels
-      for (let i = 0; i < 4; i++) {
-        const squareDiv = document.createElement('div');
-        squareDiv.className = 'square';
-        const label = document.createElement('span');
-        label.className = 'square-label';
-        label.innerText = squareLabels[i];
-        squareDiv.appendChild(label);
-        rowDiv.appendChild(squareDiv);
+    // Add squares with labels
+    for (let i = 0; i < 4; i++) {
+      const squareDiv = document.createElement('div');
+      squareDiv.className = 'square';
+      const label = document.createElement('span');
+      label.className = 'square-label';
+      label.innerText = squareLabels[i];
+      squareDiv.appendChild(label);
+      rowDiv.appendChild(squareDiv);
 
-        // Add aisle label after the second square
-        if (i === 1) {
-          const aisleLabel = document.createElement('div');
-          aisleLabel.className = 'aisle-label';
-          aisleLabel.innerText = aisleNumber;
-          rowDiv.appendChild(aisleLabel);
-          aisleNumber++;
-        }
+      // Add aisle label in the middle of the row
+      if (i === 1) {
+        const aisleLabel = document.createElement('div');
+        aisleLabel.className = 'aisle-label';
+        aisleLabel.innerText = aisleNumber;
+        rowDiv.appendChild(aisleLabel);
       }
-      squaresContainer.appendChild(rowDiv);
     }
+    squaresContainer.appendChild(rowDiv);
+    aisleNumber++;
+  }
   
   let states = [];
   const counters = {
