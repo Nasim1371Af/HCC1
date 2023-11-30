@@ -309,6 +309,33 @@ squares.forEach((square, index) => {
       states = states.map(() => 0);
     }
   });
+
+  document.getElementById('save-button').addEventListener('click', function() {
+    // Display confirmation prompt
+    const shouldSave = confirm('Do you want to save the Head Count Card?');
+    
+    // Check if user confirmed the action
+    if (shouldSave) {
+      // Code to save the data to a file
+      const timestamp = new Date().toISOString();
+      const data = `Timestamp: ${timestamp}\nAdult: ${counters.adult}\nChild: ${counters.child}\nCargo: ${counters.cargo}`;
+      // Call a function to save the data to a file
+      saveDataToFile(data);
+    }
+});
+
+  function saveDataToFile(data) {
+  const blob = new Blob([data], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'head-count-card.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+  
 </script>
 
 </body>
