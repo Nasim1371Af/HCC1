@@ -5,26 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Responsive Squares</title>
 <style>
-#squares-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 10px; /* Added some padding */
-}
+  #squares-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 10px;
+    justify-content: center;
+    padding: 10px;
+  }
 
-.square {
-  width: 20vw; /* Width relative to the viewport width */
-  height: 0; /* Set height to 0 */
-  padding-top: 20vw; /* Top padding as a percentage of the width */
-  background-color: #f8f8f8;
-  border: 5px solid #d3d3d3;
-  cursor: pointer;
-  margin: 5px;
-  box-sizing: border-box;
-  position: relative; /* Needed for absolute positioning of children if any */
-}
+  .square {
+    background-color: #f8f8f8;
+    border: 5px solid #d3d3d3;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 10px; /* To ensure spacing between rows */
+  }
 
-
+  .square::before {
+    content: '';
+    display: block;
+    padding-top: 100%; /* Maintain aspect ratio */
+  }
+  
 .row {
   display: flex;
   justify-content: center;
