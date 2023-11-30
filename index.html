@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Responsive Squares</title>
+<title>Digital HCC</title>
 <style>
 
   body {
@@ -324,8 +324,12 @@ squares.forEach((square, index) => {
     }
 });
 
-  function saveDataToFile(data) {
-  const blob = new Blob([data], { type: 'text/plain' });
+function saveDataToFile(data) {
+  const totalTally = counters.adult + counters.child + counters.cargo;
+  const timestamp = new Date().toISOString();
+  const dataWithTotal = `Timestamp: ${timestamp}\nAdult: ${counters.adult}\nChild: ${counters.child}\nCargo: ${counters.cargo}\nTOTAL: ${totalTally}`;
+  
+  const blob = new Blob([dataWithTotal], { type: 'text/plain' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -335,6 +339,7 @@ squares.forEach((square, index) => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+
   
 </script>
 
