@@ -1,3 +1,5 @@
+when a square is clicked once (affecting adult tally) put the text ADULT in small font inside the square at the bottom centre. if it is clicked twice (affecting child tally) put the text CHILD. If it clicked a third time put the text CARGO. If it is clicked a fourth time (ie resetting the square) remove any text so the square looks like it did initially
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,12 +28,6 @@
   margin: 5px;
   box-sizing: border-box;
   position: relative; /* To position labels */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: black; /* Text color */
-  font-size: 12px; /* Adjust as needed */
 }
 
       .square-label {
@@ -224,13 +220,21 @@ margin-right: 40px;
     states[index] = 0; // Initialize state for each square
     square.addEventListener('click', function() {
       // Update counters based on the current state of the clicked square
-    if (states[index] === 1) {
-      square.textContent = 'ADULT';
-    } else if (states[index] === 2) {
-      square.textContent = 'CHILD';
-    } else if (states[index] === 3) {
-      square.textContent = 'CARGO';
-    }
+      if (states[index] === 0) {
+        counters.adult++;
+        square.textContent = 'ADULT';
+      } else if (states[index] === 1) {
+        counters.adult--;
+        counters.child++;
+        square.textContent = 'CHILD';
+      } else if (states[index] === 2) {
+        counters.child--;
+        counters.cargo++;
+        square.textContent = 'CARGO';
+      } else if (states[index] === 3) {
+        counters.cargo--;
+        square.textContent = 'CARGO';
+      }
 
       // Update state, UI, and square styles
       states[index] = (states[index] + 1) % 4;
@@ -277,3 +281,4 @@ margin-right: 40px;
 
 </body>
 </html>
+
