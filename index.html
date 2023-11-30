@@ -12,6 +12,20 @@ when a square is clicked once (affecting adult tally) put the text ADULT in smal
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
 }
 
+#top-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgb(228, 0, 0);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1001; /* Make sure it's above other elements */
+}
+  
 #squares-container {
   display: flex;
   justify-content: center;
@@ -154,6 +168,7 @@ margin-right: 40px;
 </style>
 </head>
 <body>
+<div id="top-banner">Digital Head Count Card - Dash 8 200 Series</div>
 
   <div id="squares-container">
     <!-- Dynamically generate rows and squares with JavaScript -->
