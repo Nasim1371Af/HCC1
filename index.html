@@ -283,6 +283,10 @@ squares.forEach((square, index) => {
       // Resetting squares
       squares.forEach((square) => {
         square.className = 'square'; // Resets to default style
+        const dynamicText = square.querySelector('.dynamic-text');
+        if (dynamicText) {
+          dynamicText.textContent = ''; // Clear the dynamic text
+        }
       });
 
       // Resetting states
