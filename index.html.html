@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Squares</title>
+<style>
+#squares-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px; /* Added some padding */
+}
+
+.square {
+  flex: 0 0 100px; /* Flex basis of 100px and don't grow or shrink */
+  height: 100px; /* Fixed height */
+  background-color: #f8f8f8;
+  border: 10px solid #d3d3d3;
+  cursor: pointer;
+  margin: 5px;
+  box-sizing: border-box;
+}
+
+    .row {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Ensure rows take full width */
+}
+
+.square:nth-child(2) {
+  margin-right: 50px; /* Gap for the 'aisle' */
+}
+
+  /* Styles for clicked states */
+  .first-click { background-color: #36454f; border-color: red; }
+  .second-click { background-color: #36454f; border-color: aqua; }
+  .third-click { background-color: #36454f; border-color: gold; }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .square {
+      width: 40%; /* Larger percentage for smaller screens */
+      padding-top: 40%;
+    }
+  }
+
+.counter {
+  /* Removed position:absolute and bottom properties */
+  width: 100%;
+  text-align: center;
+  display: block; /* Each counter on its own line */
+  margin: 5px 0; /* Adds vertical spacing between counters */
+}
+
+    #counter-banner {
+    position: fixed; /* Keeps the banner fixed in place */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    z-index: 1000; /* Ensures it stays above other content */
+  }
+</style>
+</head>
+<body>
+
+    <div id="squares-container">
+        <!-- First row of squares -->
+        <div class="row">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <!-- Second row of squares -->
+        <div class="row">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+        <div class="row">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div class="row">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div class="row">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div class="row">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div class="row">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div class="row">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div class="row">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div class="row">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div class="row">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div class="row">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div class="row">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div class="row">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+      </div>
+
+<div id="counter-banner">
+  <div class="counter">Adult: <span id="adult">0</span></div>
+  <div class="counter">Child: <span id="child">0</span></div>
+  <div class="counter">Cargo: <span id="cargo">0</span></div>
+</div>
+<script>
+  let states = [];
+  const counters = {
+    adult: 0,
+    child: 0,
+    cargo: 0
+  };
+  const adultCounter = document.getElementById('adult');
+  const childCounter = document.getElementById('child');
+  const cargoCounter = document.getElementById('cargo');
+  const squares = document.querySelectorAll('.square');
+
+  squares.forEach((square, index) => {
+    states[index] = 0; // Initialize state for each square
+    square.addEventListener('click', function() {
+      // Update counters based on the current state of the clicked square
+      if (states[index] === 0) {
+        counters.adult++;
+      } else if (states[index] === 1) {
+        counters.adult--;
+        counters.child++;
+      } else if (states[index] === 2) {
+        counters.child--;
+        counters.cargo++;
+      } else if (states[index] === 3) {
+        counters.cargo--;
+      }
+
+      // Update state, UI, and square styles
+      states[index] = (states[index] + 1) % 4;
+      square.className = 'square'; // Reset to default style
+      if (states[index] === 1) {
+        square.classList.add('first-click');
+      } else if (states[index] === 2) {
+        square.classList.add('second-click');
+      } else if (states[index] === 3) {
+        square.classList.add('third-click');
+      }
+      adultCounter.textContent = counters.adult;
+      childCounter.textContent = counters.child;
+      cargoCounter.textContent = counters.cargo;
+    });
+  });
+</script>
+
+</body>
+</html>
