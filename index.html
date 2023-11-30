@@ -343,6 +343,49 @@ function saveDataToFile(data) {
   
 </script>
 
+<script>
+    const manifest = {
+        "name": "Digital Head Count Card",
+        "short_name": "Digital HCC",
+        "theme_color": "#ffffff",
+        "background_color": "#ffffff",
+        "display": "standalone",
+        "scope": "/",
+        "start_url": "/"
+    };
+
+    const stringManifest = JSON.stringify(manifest);
+    const blob = new Blob([stringManifest], {type: 'application/json'});
+    const manifestURL = URL.createObjectURL(blob);
+    document.querySelector('head').insertAdjacentHTML('beforeend', `<link rel="manifest" href="${manifestURL}">`);
+</script>
+
+<script>
+    if ('serviceWorker' in navigator) {
+        const swScript = `
+            self.addEventListener('install', function(event) {
+                console.log('Service Worker installing.');
+            });
+
+            self.addEventListener('fetch', function(event) {
+                console.log('Service Worker fetching.');
+            });
+        `;
+
+        const blob = new Blob([swScript], { type: "text/javascript" });
+        const swURL = URL.createObjectURL(blob);
+
+        navigator.serviceWorker.register(swURL)
+            .then(function(registration) {
+                console.log('Service Worker Registered with scope: ', registration.scope);
+            })
+            .catch(function(error) {
+                console.log('Service Worker registration failed:', error);
+            });
+    }
+</script>
+
+
 </body>
 </html>
 
