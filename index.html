@@ -84,6 +84,12 @@
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
     z-index: 1000; /* Ensures it stays above other content */
   }
+
+  #counter-banner button {
+  margin-left: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -181,6 +187,7 @@
   <div class="counter">Adult: <span id="adult">0</span></div>
   <div class="counter">Child: <span id="child">0</span></div>
   <div class="counter">Cargo: <span id="cargo">0</span></div>
+  <button id="reset-button">Reset</button> <!-- Reset Button -->
 </div>
 <script>
   let states = [];
@@ -224,6 +231,26 @@
       childCounter.textContent = counters.child;
       cargoCounter.textContent = counters.cargo;
     });
+
+      document.getElementById('reset-button').addEventListener('click', function() {
+    if (confirm('Are you sure you want to reset the Head Count Card?')) {
+      // Resetting counters
+      counters.adult = 0;
+      counters.child = 0;
+      counters.cargo = 0;
+      adultCounter.textContent = '0';
+      childCounter.textContent = '0';
+      cargoCounter.textContent = '0';
+
+      // Resetting squares
+      squares.forEach((square) => {
+        square.className = 'square'; // Resets to default style
+      });
+
+      // Resetting states
+      states = states.map(() => 0);
+    }
+  });
   });
 </script>
 
