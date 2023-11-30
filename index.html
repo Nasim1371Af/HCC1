@@ -30,6 +30,13 @@ when a square is clicked once (affecting adult tally) put the text ADULT in smal
   position: relative; /* To position labels */
 }
 
+  .dynamic-text {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: black;
+}
+
       .square-label {
       position: absolute;
       top: 5px;
@@ -216,25 +223,29 @@ margin-right: 40px;
     totalCounter.textContent = total;
   }
 
-  squares.forEach((square, index) => {
-    states[index] = 0; // Initialize state for each square
-    square.addEventListener('click', function() {
-      // Update counters based on the current state of the clicked square
-      if (states[index] === 0) {
-        counters.adult++;
-        square.textContent = 'ADULT';
-      } else if (states[index] === 1) {
-        counters.adult--;
-        counters.child++;
-        square.textContent = 'CHILD';
-      } else if (states[index] === 2) {
-        counters.child--;
-        counters.cargo++;
-        square.textContent = 'CARGO';
-      } else if (states[index] === 3) {
-        counters.cargo--;
-        square.textContent = '';
-      }
+squares.forEach((square, index) => {
+  states[index] = 0; // Initialize state for each square
+  const dynamicText = document.createElement('span'); // Create a new span for dynamic text
+  dynamicText.className = 'dynamic-text';
+  square.appendChild(dynamicText); // Append it to the square
+
+  square.addEventListener('click', function() {
+    // Update counters based on the current state of the clicked square
+    if (states[index] === 0) {
+      counters.adult++;
+      dynamicText.textContent = 'ADULT';
+    } else if (states[index] === 1) {
+      counters.adult--;
+      counters.child++;
+      dynamicText.textContent = 'CHILD';
+    } else if (states[index] === 2) {
+      counters.child--;
+      counters.cargo++;
+      dynamicText.textContent = 'CARGO';
+    } else if (states[index] === 3) {
+      counters.cargo--;
+      dynamicText.textContent = '';
+    }
 
       // Update state, UI, and square styles
       states[index] = (states[index] + 1) % 4;
