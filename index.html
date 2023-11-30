@@ -13,16 +13,16 @@
 }
 
 .square {
-  flex: 0 0 100px; /* Flex basis of 100px and don't grow or shrink */
-  height: 100px; /* Fixed height */
+  width: min(20vw, 100px); /* Width is the smaller of 20% of viewport width or 100px */
+  height: min(20vw, 100px); /* Height matches width to maintain square aspect ratio */
   background-color: #f8f8f8;
-  border: 10px solid #d3d3d3;
+  border: 5px solid #d3d3d3;
   cursor: pointer;
   margin: 5px;
   box-sizing: border-box;
 }
 
-    .row {
+.row {
   display: flex;
   justify-content: center;
   width: 100%; /* Ensure rows take full width */
@@ -38,11 +38,14 @@
   .third-click { background-color: #36454f; border-color: gold; }
 
   /* Responsive adjustments */
-  @media (max-width: 600px) {
-    .square {
-      width: 40%; /* Larger percentage for smaller screens */
-      padding-top: 40%;
-    }
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+  .square {
+    width: 40vw; /* Larger relative size for smaller screens */
+    height: 40vw; /* Maintain square aspect ratio */
+  }
+  .square:nth-child(2) {
+    margin-right: 5vw; /* Smaller gap for the 'aisle' on smaller screens */
   }
 
 .counter {
