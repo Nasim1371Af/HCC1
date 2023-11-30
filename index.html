@@ -26,6 +26,12 @@
   margin: 5px;
   box-sizing: border-box;
   position: relative; /* To position labels */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: black; /* Text color */
+  font-size: 12px; /* Adjust as needed */
 }
 
       .square-label {
@@ -218,17 +224,14 @@ margin-right: 40px;
     states[index] = 0; // Initialize state for each square
     square.addEventListener('click', function() {
       // Update counters based on the current state of the clicked square
-      if (states[index] === 0) {
-        counters.adult++;
-      } else if (states[index] === 1) {
-        counters.adult--;
-        counters.child++;
-      } else if (states[index] === 2) {
-        counters.child--;
-        counters.cargo++;
-      } else if (states[index] === 3) {
-        counters.cargo--;
-      }
+    square.textContent = ''; // Clear existing content
+    if (states[index] === 1) {
+      square.textContent = 'ADULT';
+    } else if (states[index] === 2) {
+      square.textContent = 'CHILD';
+    } else if (states[index] === 3) {
+      square.textContent = 'CARGO';
+    }
 
       // Update state, UI, and square styles
       states[index] = (states[index] + 1) % 4;
