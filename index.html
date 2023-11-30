@@ -13,14 +13,17 @@
 }
 
 .square {
-  width: min(20vw, 100px); /* Width is the smaller of 20% of viewport width or 100px */
-  height: min(20vw, 100px); /* Height matches width to maintain square aspect ratio */
+  width: 20vw; /* Width relative to the viewport width */
+  height: 0; /* Set height to 0 */
+  padding-top: 20vw; /* Top padding as a percentage of the width */
   background-color: #f8f8f8;
   border: 5px solid #d3d3d3;
   cursor: pointer;
   margin: 5px;
   box-sizing: border-box;
+  position: relative; /* Needed for absolute positioning of children if any */
 }
+
 
 .row {
   display: flex;
