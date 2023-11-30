@@ -6,183 +6,178 @@
 <title>Responsive Squares</title>
 <style>
   #squares-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    grid-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px; /* Added some padding */
+  }
+
+  .row {
+    display: flex;
     justify-content: center;
-    padding: 10px;
+    margin-bottom: 10px; /* Space between rows */
   }
 
   .square {
+    width: 100px; /* Fixed width */
+    height: 100px; /* Fixed height */
     background-color: #f8f8f8;
     border: 5px solid #d3d3d3;
     cursor: pointer;
-    position: relative;
-    margin-bottom: 10px; /* To ensure spacing between rows */
+    margin: 5px;
+    box-sizing: border-box;
   }
 
-  .square::before {
-    content: '';
-    display: block;
-    padding-top: 100%; /* Maintain aspect ratio */
+  .square:nth-child(2) {
+    margin-right: 50px; /* Gap for the 'aisle' */
   }
-  
-.row {
-  display: flex;
-  justify-content: center;
-  width: 100%; /* Ensure rows take full width */
-}
-
-.square:nth-child(2) {
-  margin-right: 50px; /* Gap for the 'aisle' */
-}
 
   /* Styles for clicked states */
   .first-click { background-color: #36454f; border-color: red; }
   .second-click { background-color: #36454f; border-color: aqua; }
   .third-click { background-color: #36454f; border-color: gold; }
 
-  /* Responsive adjustments */
-/* Responsive adjustments for smaller screens */
-@media (max-width: 600px) {
-  .square {
-    width: 40vw; /* Larger relative size for smaller screens */
-    height: 40vw; /* Maintain square aspect ratio */
-  }
-  .square:nth-child(2) {
-    margin-right: 5vw; /* Smaller gap for the 'aisle' on smaller screens */
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 600px) {
+    .square {
+      width: 40vw; /* Larger relative size for smaller screens */
+      height: 40vw; /* Maintain square aspect ratio */
+    }
+    .square:nth-child(2) {
+      margin-right: 5vw; /* Smaller gap for the 'aisle' on smaller screens */
+    }
   }
 
-.counter {
-  /* Removed position:absolute and bottom properties */
-  width: 100%;
-  text-align: center;
-  display: block; /* Each counter on its own line */
-  margin: 5px 0; /* Adds vertical spacing between counters */
-}
-
-    #counter-banner {
-    position: fixed; /* Keeps the banner fixed in place */
+  #counter-banner {
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.9);
     text-align: center;
     padding: 10px 0;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    z-index: 1000; /* Ensures it stays above other content */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  .counter {
+    display: block;
+    margin: 5px 0;
   }
 </style>
 </head>
 <body>
+  <div id="squares-container">
+    <!-- 13 rows of 4 squares each -->
+    <!-- Repeat the below structure 13 times for all rows -->
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div class="row">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <!-- ... Repeat for all rows ... -->
+  </div>
 
-    <div id="squares-container">
-        <!-- First row of squares -->
-        <div class="row">
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-        </div>
-        <!-- Second row of squares -->
-        <div class="row">
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-        </div>
-        <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-      </div>
+  <div id="counter-banner">
+    <div class="counter">Adult: <span id="adult">0</span></div>
+    <div class="counter">Child: <span id="child">0</span></div>
+    <div class="counter">Cargo: <span id="cargo">0</span></div>
+  </div>
 
-<div id="counter-banner">
-  <div class="counter">Adult: <span id="adult">0</span></div>
-  <div class="counter">Child: <span id="child">0</span></div>
-  <div class="counter">Cargo: <span id="cargo">0</span></div>
-</div>
-<script>
-  let states = [];
-  const counters = {
-    adult: 0,
-    child: 0,
-    cargo: 0
-  };
-  const adultCounter = document.getElementById('adult');
-  const childCounter = document.getElementById('child');
-  const cargoCounter = document.getElementById('cargo');
-  const squares = document.querySelectorAll('.square');
+  <script>
+    // Your existing JavaScript code for counters and click events
+    let states = [];
+    const counters = {
+      adult: 0,
+      child: 0,
+      cargo: 0
+    };
+    const adultCounter = document.getElementById('adult');
+    const childCounter = document.getElementById('child');
+    const cargoCounter = document.getElementById('cargo');
+    const squares = document.querySelectorAll('.square');
 
-  squares.forEach((square, index) => {
+    squares.forEach((square, index) => {
+      // ... Your existing click event logic ...
     states[index] = 0; // Initialize state for each square
     square.addEventListener('click', function() {
       // Update counters based on the current state of the clicked square
