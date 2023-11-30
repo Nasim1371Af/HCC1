@@ -199,14 +199,15 @@
           </div>
       </div>
 
-  <div id="counter-banner">
-    <div>
-      <span class="counter">Adult: <span id="adult">0</span></span>
-      <span class="counter">Child: <span id="child">0</span></span>
-      <span class="counter">Cargo: <span id="cargo">0</span></span>
-    </div>
-    <button id="reset-button">Reset</button>
+<div id="counter-banner">
+  <div>
+    <span class="counter">Adult: <span id="adult">0</span></span>
+    <span class="counter">Child: <span id="child">0</span></span>
+    <span class="counter">Cargo: <span id="cargo">0</span></span>
+    <span class="counter">TOTAL: <span id="total">0</span></span> <!-- Total Tally -->
   </div>
+  <button id="reset-button">Reset</button>
+</div>
 <script>
   let states = [];
   const counters = {
@@ -217,7 +218,14 @@
   const adultCounter = document.getElementById('adult');
   const childCounter = document.getElementById('child');
   const cargoCounter = document.getElementById('cargo');
+  const totalCounter = document.getElementById('total'); // Total counter element
   const squares = document.querySelectorAll('.square');
+
+  // Function to update the total tally
+  function updateTotal() {
+    const total = counters.adult + counters.child + counters.cargo;
+    totalCounter.textContent = total;
+  }
 
   squares.forEach((square, index) => {
     states[index] = 0; // Initialize state for each square
@@ -248,6 +256,7 @@
       adultCounter.textContent = counters.adult;
       childCounter.textContent = counters.child;
       cargoCounter.textContent = counters.cargo;
+      updateTotal();
     });
   });
 
